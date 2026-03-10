@@ -1,0 +1,42 @@
+/* Sidebar transition effects */
+.sidebar {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  transition: all 0.3s ease;
+}
+
+/* Collapsed state styles */
+.sidebar.collapsed {
+  overflow: hidden;
+}
+
+.sidebar.collapsed .nav-link,
+.sidebar.collapsed .tab-content {
+  display: none;
+}
+
+/* Button styles */
+.btn-toggle {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Ensure content doesn't overflow */
+.sidebar-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+  }
+  
+  .sidebar:not(.collapsed) {
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  }
+}

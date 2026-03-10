@@ -1,0 +1,9 @@
+Flask
+flask-cors
+torch
+Pillow
+requests
+python-dotenv
+transformers
+ultralytics
+numpy

@@ -1,0 +1,37 @@
+services:
+  backend_python:
+    image: anomalens/backend-python:latest
+    build:
+      context: ./backend_python
+    ports:
+      - "5000:5000"
+    environment:
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      NODE_BACKEND_URL: http://admin-backend:5001/api/historique
+      PUBLIC_BACKEND_BASE_URL: ${PUBLIC_BACKEND_BASE_URL:-http://localhost:5000}
+    volumes:
+      - ./backend_python/uploads:/app/backend_python/uploads
+      - ./backend_python/output_clips:/app/backend_python/output_clips
+
+  admin-backend:
+    image: anomalens/admin-backend:latest
+    build:
+      context: ./admin-backend
+    ports:
+      - "5001:5001"
+    environment:
+      PORT: 5001
+      MONGO_URI: ${MONGO_URI:-}
+
+  frontend:
+    image: anomalens/frontend:latest
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL:-http://localhost:5001}
+        REACT_APP_BACKEND_URL: ${REACT_APP_BACKEND_URL:-http://localhost:5000}
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend_python
+      - admin-backend

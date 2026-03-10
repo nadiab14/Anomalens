@@ -1,0 +1,33 @@
+# Secrets
+.env
+**/.env
+!.env.example
+!**/.env.example
+
+# Node / frontend
+node_modules/
+frontend/node_modules/
+admin-backend/node_modules/
+frontend/build/
+frontend/dist/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Generated assets and runtime data
+backend_python/output_clips/
+backend_python/uploads/
+backend_python/video_clips.db
+admin-backend;C/
+*.log
+
+# Archives and local artifacts
+*.zip
+.DS_Store
+Thumbs.db
